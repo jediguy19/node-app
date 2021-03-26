@@ -1,14 +1,14 @@
-//importing node framework
-var express = require('express');
+const http = require('http');
 
-var app = express();
+const hostname = '127.0.0.1';
+const port = 3000;
 
-//Respond with "hello world" for requests that hit our root "/"
-app.get('/', function (req, res) {
-    res.send('Hello from Jenkins');
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World');
 });
 
-//listen to port 3000 by default
-app.listen(process.env.PORT || 3001);
-
-module.exports = app;
+server.listen(port, hostname, () => {
+    console.log('Server running at http://${hostname}:${port}/');
+});
